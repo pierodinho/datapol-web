@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="DataPol : explorer la participation et les résultats de la présidentielle 2022, avec les indicateurs INSEE des communes.">
+  <title>DataPol — L'élection, à l'échelle des communes</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<header>
+  <nav><a class="brand" href="./"><span class="monogram" aria-hidden="true">dP</span> DataPol<span class="tag">EXPLORATEUR PUBLIC</span></a><a href="#methodologie">Sources & méthode ↗</a></nav>
+  <div class="intro"><div><p class="eyebrow">PRÉSIDENTIELLE 2022 · PREMIER TOUR</p><h1>L'élection, à l'échelle<br>des communes.</h1><p>Participation, résultats et niveau de vie : explorez les territoires, comparez les perspectives.</p></div><div class="edition"><span>01 / FRANCE</span><strong>Des données ouvertes.<br>Un regard local.</strong><small>Élections 2022 · INSEE 2023</small></div></div>
+  <div class="kpis" aria-live="polite"><article><span>Total inscrits</span><strong id="inscrits">—</strong><small>Électeurs inscrits</small></article><article><span>Taux de participation</span><strong id="participation">—</strong><small>Votants / inscrits</small></article><article><span>Total exprimés</span><strong id="exprimes">—</strong><small>Suffrages exprimés</small></article><article class="scope"><span>Périmètre de l'analyse</span><strong id="count">—</strong><small id="scope-note">Chargement des données…</small></article></div>
+</header>
+<main>
+<section class="filters" aria-label="Filtres des communes">
+  <div class="filter-title"><span class="section-number">01</span><div><h2>Votre sélection</h2><p>Comparez plusieurs communes, ou explorez la France entière.</p></div></div>
+  <div class="search-wrap"><label for="search">Rechercher une commune</label><input id="search" type="search" autocomplete="off" placeholder="Nom ou code commune…" aria-controls="suggestions" disabled><div id="suggestions" class="suggestions" hidden></div></div>
+  <button id="reset" class="secondary" disabled>Tout afficher</button>
+  <div id="chips" class="chips" aria-label="Communes sélectionnées"></div>
+</section>
+<p id="status" role="status">Chargement des données Gold…</p>
+<div class="dashboard">
+ <div class="left-column">
+  <section class="panel ranking"><div class="panel-heading"><div><p class="eyebrow">MOBILISATION</p><h2>Les communes qui participent le plus</h2><p>Top 10 de la sélection · au moins 1 000 inscrits</p></div><span class="badge">%</span></div><div id="ranking" class="bars"></div></section>
+  <section class="panel results"><div class="panel-heading"><div><p class="eyebrow">LE VOTE</p><h2>Résultats par candidat</h2><p>Part des suffrages exprimés dans la sélection</p></div></div><div id="results" class="bars"></div><button id="show-all" class="text-button">Voir les 12 candidats ↓</button></section>
+ </div>
+ <section class="panel scatter-panel"><div class="panel-heading"><div><p class="eyebrow">LES TERRITOIRES</p><h2>Participation & niveau de vie</h2><p>Chaque bulle représente une commune · taille selon la population</p></div></div><div class="legend"><span><i class="dot"></i>Communes</span><span><i class="dash"></i>Références nationales</span></div><div class="scatter-wrap"><canvas id="scatter" tabindex="0" role="img" aria-label="Nuage de points : niveau de vie médian et taux de participation. Données accessibles dans le tableau ci-dessous."></canvas><div id="tooltip" role="status" hidden></div></div><p class="chart-note" id="scatter-note"></p></section>
+</div>
+<section class="panel table-panel"><div class="panel-heading"><div><p class="eyebrow">EN DÉTAIL</p><h2>Les communes de votre sélection</h2><p id="table-note"></p></div><button id="download" class="secondary" disabled>Exporter la sélection CSV ↓</button></div><div class="table-scroll"><table><thead><tr><th scope="col">Commune</th><th scope="col">Code</th><th scope="col">Inscrits</th><th scope="col">Participation</th><th scope="col">Niveau de vie médian</th><th scope="col">Population</th></tr></thead><tbody id="table-body"></tbody></table></div></section>
+<section id="methodologie" class="method"><div><p class="eyebrow">LIRE LES DONNÉES</p><h2>Comparer avec contexte.</h2></div><div><p>Les résultats portent sur le premier tour de l'élection présidentielle de <strong>2022</strong>. Les indicateurs socio-économiques INSEE proviennent des données <strong>2023</strong> utilisées dans DataPol.</p><p>Les taux agrégés sont calculés à partir des totaux : somme des votants / somme des inscrits, et somme des voix / somme des exprimés. Les pourcentages des communes ne sont pas moyennés.</p><p>La ligne horizontale représente la participation nationale du jeu de données. La ligne verticale est la médiane des niveaux de vie communaux renseignés, sans pondération par la population. Ces références ne changent pas avec les filtres.</p><p>Les communes sans niveau de vie ou population renseignés restent dans les totaux et le tableau, mais sont absentes du nuage. Une relation visible sur le graphique ne démontre pas un lien de causalité.</p><p>Source affichée : tables Gold DataPol, issues des résultats électoraux et des données INSEE. Un instantané est publié avec le site ; les données ne sont pas actualisées en temps réel.</p></div></section>
+</main>
+<footer><a class="brand" href="./">DataPol</a><span>Comprendre les territoires par les données.</span><span>Présidentielle 2022 · 1er tour</span></footer>
+</body></html>
